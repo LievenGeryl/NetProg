@@ -1,8 +1,8 @@
 # Wat doet de bot?
 
--> Laat user een Room kiezen.
+-> Laat user een Room kiezen waar de bot "luistert" naar de berichten.
 
--> "help" commando om alle mogelijke commands te tonen.
+-> "help"-commando om alle mogelijke commands te tonen.
 
 -> Gebruikt de LOTR API om informatie te geven over een willekeurig karakter.
 
