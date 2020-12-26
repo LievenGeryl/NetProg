@@ -1,10 +1,15 @@
 # Wat doet de bot?
 
 -> Laat user een Room kiezen.
+
 -> "help" commando om alle mogelijke commands te tonen.
+
 -> Gebruikt de LOTR API om informatie te geven over een willekeurig karakter.
+
 -> Gebruikt de LOTR API om een willekeurige quote uit de films te geven
+
 -> Gebruikt de LOTR API om alle films op te noemen
+
 -> Gebruikt de LOTR API om alle boeken op te noemen (hier zijn er jammergenoeg enkele tekort bij de LOTR API zelf)
 
 
