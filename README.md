@@ -15,9 +15,9 @@ Video: [LINKTOBEADDED](youtube.com) -> Video die de werking van het programma de
 - [X] ~~Reactie op command "/dadjoke": Stuurt dad joke~~ Lukte wel, maar niet relevant voor de opdracht: Het doel van deze "tussen-feature" was om met een veel simpelere bot HTTP POST te doen zodat ik zeker was dat ik wel snapte hoe ik moet "POSTen".
 - [X] Gebruikt LOTR API om alle boeken & films op te sommen. 
 - [X] Gebruikt LOTR API om alle karakters (met al hun informatie) & quotes zijn maar 1 willekeurige van de honderden in hun database.
-- [ ] POST de LOTR data in Webex kanaal
+- [X] POST de LOTR data in Webex kanaal
 
 # Nice to have:
-- [ ] HTTP Cats
+- [X] ~~HTTP Cats~~ Had ik ook even, ze werden irritant.
 
 
