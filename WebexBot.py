@@ -3,14 +3,19 @@ import json
 import random
 
 #AccessToken Webex, enkel 12u geldig
-accessToken = "Bearer NDVkNTM0NjQtZmYwMy00MTU4LTllNTMtZjZiYWQ4ODQ1ZWU0OGU4OGY0ZTItZWM1_PF84_consumer"
+accessToken = "Bearer NDNjNmRiNmUtZTlkMi00OTZiLWEwYTktZmMxOWYxNjY5ZTEwM2M3ZGJiN2ItMjI5_PF84_consumer"
 
 #Auth key voor LOTR API
 auth = "Bearer cUR_17Bs17xRvRzStIv4"
 
+HTTPHeaders = { 
+    "Authorization": accessToken,
+    "Content-Type": "application/json"
+    }
+
 #Rooms API gebruiken
 resp = requests.get(   "https://api.ciscospark.com/v1/rooms",
-                    headers = {"Authorization": accessToken}
+                    headers = HTTPHeaders
                 )
 #Rooms printen
 print("Lijst van alle rooms:")
@@ -62,7 +67,7 @@ while True:
     if len(jsonData["items"]) == 0:
         raise Exception("Geen berichten in de room")
     
-    # alle berichten "opslaan"
+    # berichten "opslaan"
     messages = jsonData["items"]
     # tekst van het meest recente bericht opslaan in een andere variabele, met deze werken we.
     message = messages[0]["text"]
@@ -73,53 +78,103 @@ while True:
 
     #help-menu voor bot
     if message == "/help":
-        print("De volgende commando's kunt u uitvoeren: \n",
-              "help: Pretty obvious, isn't it?\n",
-              "movies: Geef alle Lord Of The Rings films via The One API\n",
-              "books: Geef alle Lord Of The Rings boeken via The One API\n",
-              "character: Geef een willekeurig karakter die in Tolkiens universum bestaat\n",
-              "quote: Geef een willekeurge quote van een karakter die in Tolkiens universum bestaat\n")
+        PostData = {
+            "roomId": roomId,
+            "text": "De volgende commando's kunt u uitvoeren: \n"
+                    "'/movies': Geef alle Lord Of The Rings films via The One API\n"
+                    "'/books': Geef alle Lord Of The Rings boeken via The One API\n"
+                    "'/character': Geef een willekeurig karakter die in Tolkiens universum bestaat\n"
+                    "'/quote': Geef een willekeurge quote van een karakter die in Tolkiens universum bestaat\n"
+                    "'/help': Pretty obvious, isn't it?\n"
+                    }
 
-    #Alle films printen
+        r = requests.post( "https://webexapis.com/v1/messages", 
+                headers = HTTPHeaders, 
+                data = json.dumps(PostData)
+            )
+
+    #Alle films POSTen
     if message == "/movies":
         response = requests.get("https://the-one-api.dev/v2/movie", headers = {"Authorization": auth})
-        print(response.json())
         docs = response.json()["docs"]
-        movie = [print(x['name']) for x in docs]
+        movies = [x['name'] for x in docs]
+
+        PostData = {
+        "roomId": roomId,
+        "text": movies[2] + "\n" + movies[3] + "\n" + movies[4] + "\n" + movies[5]+ "\n" + movies[6]+ "\n" + movies[7]
+                        
+        }
+        
+        r = requests.post( "https://webexapis.com/v1/messages", 
+        headers = HTTPHeaders, 
+        data = json.dumps(PostData)
+            )
 
     #Alle boeken printen
     if message == "/books":
         response = requests.get("https://the-one-api.dev/v2/book", headers = {"Authorization": auth})
         docs = response.json()["docs"]
-        books = [print(x['name']) for x in docs]
+        books = [x['name'] for x in docs]
+        
+        PostData = {
+                "roomId": roomId,
+                "text": books[0] + "\n" + books[1] + "\n" + books[2]
+                        
+                }
+        
+        r = requests.post( "https://webexapis.com/v1/messages", 
+        headers = HTTPHeaders, 
+        data = json.dumps(PostData)
+            )
 
     #print random character
     if message == "/character":
-        while True:
-            randomId = random.randint(0, 940)
-            response = requests.get("https://the-one-api.dev/v2/character", headers = {"Authorization": auth})
-            docs = response.json()["docs"]
-            print("Name: " + docs[randomId]["name"])
-            print("Birth: " + docs[randomId]["birth"])
-            print("Death: " + docs[randomId]["death"])
-            print("Race: " + docs[randomId]["race"])
-            print("Gender: " + docs[randomId]["gender"])
-            print("From the realm of: " + docs[randomId]["realm"])
-            print("Spouse: " + docs[randomId]["spouse"])
-            print("Not everything is known about these characters, if the value is blank or NaN it means that it simply isn't known, isn't relevant or isn't the database yet.")
-            print("====================================")
-            breakVar = input("new character? (Y/N) ")
-            if breakVar == "y" or breakVar == "Y":
-                continue
-            elif breakVar == "n" or breakVar == "N":
-                break
 
+        randomId = random.randint(0, 940)
+        response = requests.get("https://the-one-api.dev/v2/character", headers = {"Authorization": auth})
+        docs = response.json()["docs"]
+        name = "Name: " + docs[randomId]["name"]
+        birth = "Birth: " + docs[randomId]["birth"]
+        death = "Death: " + docs[randomId]["death"]
+        race = "Race: " + docs[randomId]["race"]
+        gender = "Gender: " + docs[randomId]["gender"]
+        realm = "From the realm of: " + docs[randomId]["realm"]
+        spouse = "Spouse: " + docs[randomId]["spouse"]
+
+        disclaimer = "Not everything is known about these characters, if the value is blank or NaN it means that it simply isn't known, isn't relevant or isn't the database yet."
+
+        PostData = {
+            "roomId": roomId,
+            "text": name + "\n" +
+                    birth + "\n" +
+                    death + "\n" +
+                    race + "\n" +
+                    gender + "\n" +
+                    realm + "\n" + 
+                    spouse + "\n" +
+                    disclaimer
+                        }
+
+            
+        r = requests.post( "https://webexapis.com/v1/messages", 
+            headers = HTTPHeaders, 
+            data = json.dumps(PostData)
+            )
             
     #print random quotes
     if message == "/quote":
         randomId = random.randint(0, 999)
         response = requests.get("https://the-one-api.dev/v2/quote", headers = {"Authorization": auth})
         docs = response.json()["docs"]
-        print("Quote: '" + docs[randomId]["dialog"]+"'")
-
+        quote = "Quote: '" + docs[randomId]["dialog"]+"'"
+        
+        PostData = {
+            "roomId": roomId,
+            "text": quote
+            }
+        
+        r = requests.post( "https://webexapis.com/v1/messages", 
+            headers = HTTPHeaders, 
+            data = json.dumps(PostData)
+            )
 

@@ -4,9 +4,9 @@ import random
 auth = "Bearer cUR_17Bs17xRvRzStIv4"
 #Books
 
-#response = requests.get("https://the-one-api.dev/v2/book", headers = {"Authorization": auth})
-#docs = response.json()["docs"]
-#books = [print(x['name']) for x in docs]
+response = requests.get("https://the-one-api.dev/v2/book", headers = {"Authorization": auth})
+docs = response.json()["docs"]
+books = [print(x['name']) for x in docs]
 
 
 #Movies
@@ -37,8 +37,8 @@ auth = "Bearer cUR_17Bs17xRvRzStIv4"
       #  break
 
 
-randomId = random.randint(0, 999)
-response = requests.get("https://the-one-api.dev/v2/quote", headers = {"Authorization": auth})
-docs = response.json()["docs"]
+#randomId = random.randint(0, 999)
+#response = requests.get("https://the-one-api.dev/v2/quote", headers = {"Authorization": auth})
+#docs = response.json()["docs"]
 
-print("Quote: '" + docs[randomId]["dialog"]+"'")
+#print("Quote: '" + docs[randomId]["dialog"]+"'")
