@@ -4,7 +4,7 @@ File: [WebexBot.py](https://github.com/LievenGeryl/NetProg/blob/main/WebexBot.py
 
 File: [posttest.py](https://github.com/LievenGeryl/NetProg/blob/main/posttest.py) is een file waarin ik getest heb om mijn eerste paar POSTs te maken.
 
-File: [LOTR.py](https://github.com/LievenGeryl/NetProg/blob/main/LOTR.py) is een file waarin ik eerst alle functionaliteiten met de API heb getest voordat ik de in [WebexBot.py](https://github.com/LievenGeryl/NetProg/blob/main/WebexBot.py) stak. Dit was grotendeels voor het gemak zodat ik niet de helft van mijn code moest uitcommenten en "foefelen" omdat ik niet constant opnieuw een room wil kiezen om mee te werken. Deze file zit er in voor transparantie en documentatie.
+File: [LOTR.py](https://github.com/LievenGeryl/NetProg/blob/main/LOTR.py) is een file waarin ik eerst alle functionaliteiten met de API heb getest voordat ik deze in [WebexBot.py](https://github.com/LievenGeryl/NetProg/blob/main/WebexBot.py) stak. Dit was grotendeels voor het gemak zodat ik niet de helft van mijn code moest uitcommenten en "foefelen" omdat ik niet constant opnieuw een room wil kiezen om mee te werken. Deze file zit er in voor transparantie en documentatie.
 
 Video: [Netprog - Opdracht met eigen inbreng](https://youtu.be/sx6DpznuWNw) -> Video die de werking van het programma demonstreert
 
